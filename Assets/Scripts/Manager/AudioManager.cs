@@ -62,25 +62,32 @@ public class AudioManager : MonoBehaviour
     //ex use: AudioManager.GetInstance().Play("name");
     public void Play(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (s == null)
-        {
-            Debug.LogWarning("Sound: " + name + " not found.");
-            return;
-        }
-            
+        Sound s = FindSound(name);  
+        if(s == null) return;
         s.source.Play();
     }
 
     public void Stop(string name)
     {
+        Sound s = FindSound(name);
+        if(s == null) return;
+        s.source.Stop();
+    }
+
+    public void Pause(string name)
+    {
+        Sound s = FindSound(name);
+        if(s == null) return;
+        s.source.Pause();
+    }
+
+    private Sound FindSound(string name) {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
         {
             Debug.LogWarning("Sound: " + name + " not found.");
             return;
         }
-
-        s.source.Stop();
+        return s;
     }
 }
