@@ -1,29 +1,28 @@
 using UnityEngine;
-using UnityEngine.Audio;
 
 [System.Serializable]
 public class Sound
 {
-    public string name;
-    public AudioClip clip;
-    public AudioTypes audioType;
+    public string Name;
+    public AudioClip Clip;
+    public AudioTypes AudioType;
     
 
     [Range(0f, 1f)]
-    public float volume;
+    public float Volume;
     [Range(0.1f, 3f)]
-    public float pitch;
+    public float Pitch;
 
-    public bool loop;
+    public bool Loop;
 
     [HideInInspector]
-    public AudioSource source;
+    public AudioSource Source;
 
 
 
     public enum AudioTypes
     {
         SFX,
-        music
+        Music
     }
 }

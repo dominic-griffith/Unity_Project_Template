@@ -6,9 +6,9 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    public AudioMixerGroup musicMixerGroup;
-    public AudioMixerGroup SFXMixerGroup;
-    public Sound[] sounds;
+    [SerializeField] private AudioMixerGroup _musicMixerGroup;
+    [SerializeField] private AudioMixerGroup _SFXMixerGroup;
+    [SerializeField] private Sound[] _sounds;
 
     private void Awake()
     {
@@ -26,22 +26,22 @@ public class AudioManager : MonoBehaviour
 
 
         //Assign atributes to the sound
-        foreach (Sound s in sounds)
+        foreach (Sound s in _sounds)
         {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
+            s.Source = gameObject.AddComponent<AudioSource>();
+            s.Source.clip = s.Clip;
 
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
+            s.Source.volume = s.Volume;
+            s.Source.pitch = s.Pitch;
+            s.Source.loop = s.Loop;
 
-            switch(s.audioType)
+            switch(s.AudioType)
             {
                 case (Sound.AudioTypes.SFX):
-                    s.source.outputAudioMixerGroup = SFXMixerGroup;
+                    s.Source.outputAudioMixerGroup = _SFXMixerGroup;
                     break;
-                case (Sound.AudioTypes.music):
-                    s.source.outputAudioMixerGroup = musicMixerGroup;
+                case (Sound.AudioTypes.Music):
+                    s.Source.outputAudioMixerGroup = _musicMixerGroup;
                     break;
             }
         }
@@ -64,25 +64,25 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = FindSound(name);  
         if(s == null) return;
-        s.source.Play();
+        s.Source.Play();
     }
 
     public void Stop(string name)
     {
         Sound s = FindSound(name);
         if(s == null) return;
-        s.source.Stop();
+        s.Source.Stop();
     }
 
     public void Pause(string name)
     {
         Sound s = FindSound(name);
         if(s == null) return;
-        s.source.Pause();
+        s.Source.Pause();
     }
 
     private Sound FindSound(string name) {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        Sound s = Array.Find(_sounds, sound => sound.Name == name);
         if (s == null)
         {
             Debug.LogWarning("Sound: " + name + " not found.");
