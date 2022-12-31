@@ -40,11 +40,11 @@ public class PauseMenu : MonoBehaviour
     public void LoadMainMenu()
     {
         Time.timeScale = 1f;
-        SceneLoader.GetInstance().LoadSceneByName("Main Menu");
+        SceneLoaderManager.GetInstance().LoadSceneByName("Main Menu");
     }
 
     public void ExitGame()
     {
-        SceneLoader.GetInstance().ExitGame();
+        SceneLoaderManager.GetInstance().ExitGame();
     }
 }

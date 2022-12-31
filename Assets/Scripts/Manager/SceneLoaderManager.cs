@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+public class SceneLoaderManager : MonoBehaviour
 {
 
-    public static SceneLoader Instance;
+    public static SceneLoaderManager Instance;
 
 
     public void Awake()
@@ -23,7 +23,7 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
-    public static SceneLoader GetInstance()
+    public static SceneLoaderManager GetInstance()
     {
         return Instance;
     }
@@ -56,10 +56,10 @@ public class SceneLoader : MonoBehaviour
     //Exit
     public void ExitGame()
     {
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-        #else
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
             Application.Quit();
-        #endif
+#endif
     }
 }

@@ -49,7 +49,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        //Play("Music");
+        PlayMusic();
     }
 
     public static AudioManager GetInstance()
@@ -57,6 +57,10 @@ public class AudioManager : MonoBehaviour
         return Instance;
     }
 
+    private void PlayMusic()
+    {
+        //Play("Music");
+    }
 
     //Play/Stop Audio Clip
     //ex use: AudioManager.GetInstance().Play("name");
